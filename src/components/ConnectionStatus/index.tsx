@@ -4,18 +4,15 @@ import { connectionStatusStyles as styles } from "./ConnectionStatus.styles";
 import { IConnectionType, connectionTypes } from "../../constants/connectionTypes";
 import { IConnectionStatus } from "./ConnectionStatus.props";
 import ConnectionStatusIndicator from "../ConnectionStatusIndicator";
-import NetInfo, { NetInfoState } from "@react-native-community/netinfo";
 
 export default function ConnectionStatus({ info }: IConnectionStatus) {
 
-    const [connectionInfo, setConnectionInfo] = useState<NetInfoState | undefined>(info)
     const [connectionType, setConnectionType] = useState(connectionTypes[0]);
     const [connectionName, setConnectionName] = useState<string | undefined | null>(undefined)
     const [connectionDetail, setConnectionDetail] = useState<string | undefined>()
     const [connectionIndicator, setConnectionIndicator] = useState<boolean | null>(false)
 
     useEffect(() => {
-        setConnectionInfo(info)
         if (info !== undefined) {
             const foundConnectionType = connectionTypes.find((connectionType) => connectionType.key === info?.type) as IConnectionType;
             setConnectionType(foundConnectionType);
