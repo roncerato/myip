@@ -4,17 +4,37 @@ import { connectionStatusStyles as styles } from "./ConnectionStatus.styles";
 import { IConnectionType, connectionTypes } from "../../constants/connectionTypes";
 import { IConnectionStatus } from "./ConnectionStatus.props";
 import ConnectionStatusIndicator from "../ConnectionStatusIndicator";
+import NetInfo, { NetInfoState } from "@react-native-community/netinfo";
 
-export default function ConnectionStatus({ type }: IConnectionStatus) {
-    const [connectionType, setConnectionType] = useState(() => {
-        return connectionTypes.find((connectionType) => connectionType.key === type) as IConnectionType;
-    });
-    const [wifiSsid, setWifiSsid] = useState<"" | false>()
+export default function ConnectionStatus({ info }: IConnectionStatus) {
+
+    const [connectionInfo, setConnectionInfo] = useState<NetInfoState | undefined>(info)
+    const [connectionType, setConnectionType] = useState(connectionTypes[0]);
+    const [connectionName, setConnectionName] = useState<string | undefined | null>(undefined)
+    const [connectionDetail, setConnectionDetail] = useState<string | undefined>()
+    const [connectionIndicator, setConnectionIndicator] = useState<boolean | null>(false)
 
     useEffect(() => {
-        const foundConnectionType = connectionTypes.find((connectionType) => connectionType.key === type) as IConnectionType;
-        setConnectionType(foundConnectionType);
-    }, [type]);
+        setConnectionInfo(info)
+        if (info !== undefined) {
+            const foundConnectionType = connectionTypes.find((connectionType) => connectionType.key === info?.type) as IConnectionType;
+            setConnectionType(foundConnectionType);
+            setConnectionIndicator(info.isInternetReachable)
+            if (info.type === "wifi") {
+                setConnectionName(info.details.ssid)
+                setConnectionDetail(`${Number(info.details.frequency! / 1000).toString().slice(0, 3)} GHz`)
+            }
+            else if (info.type === "cellular") {
+                console.log(info.details.cellularGeneration)
+                setConnectionName(info.details.carrier)
+                setConnectionDetail(info.details.cellularGeneration?.toUpperCase())
+            }
+            else {
+                setConnectionName(undefined)
+                setConnectionDetail(undefined)
+            }
+        }
+    }, [info])
 
     return (
         <View style={styles.container}>
@@ -25,14 +45,14 @@ export default function ConnectionStatus({ type }: IConnectionStatus) {
                 </View>
 
                 <Text style={styles.connectionName}>
-                    {connectionType.type}
+                    {connectionName || connectionType.type}
                 </Text>
 
                 <Text style={styles.connectionDetails}>
-                    2.4 KHz
+                    {connectionDetail}
                 </Text>
             </View>
-            <ConnectionStatusIndicator type={connectionType}/>
+            <ConnectionStatusIndicator indicator={connectionIndicator} />
         </View>
     );
 }
