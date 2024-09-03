@@ -1,0 +1,33 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/Inter-Light.ttf",
+      "sha1": "ca9d1cbe741fb0ad6f9e469f2b390a79629d10ad"
+    },
+    {
+      "path": "assets/fonts/Jost-Black.ttf",
+      "sha1": "7c56b130a018f8fa0d16f9bc4ed201c70877816e"
+    },
+    {
+      "path": "assets/fonts/Jost-Bold.ttf",
+      "sha1": "60eaf9ab668280a6ec2f5fc4f85bd285f22f8313"
+    },
+    {
+      "path": "assets/fonts/Jost-ExtraBold.ttf",
+      "sha1": "6a1466f20f9fc5fb5d7935115ddac9af72379233"
+    },
+    {
+      "path": "assets/fonts/Jost-Regular.ttf",
+      "sha1": "63de8f35a2b969d64b1e4012d26a38e8be1e01ae"
+    },
+    {
+      "path": "assets/fonts/PixelifySans-Bold.ttf",
+      "sha1": "5a099af48ac82abb545b2aa6e18196ee600bdbe9"
+    },
+    {
+      "path": "assets/fonts/Poppins-Bold.ttf",
+      "sha1": "875cf0cecd647bcf22e79d633d868c1b1ec98dfa"
+    }
+  ]
+}
