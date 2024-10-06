@@ -10,9 +10,8 @@ import React from "react";
 
 export default function IPInfo({ info, isLocal }: IIPInfo) {
 
-    const [title, setTitle] = useState<"Локальный IP" | "Глобальный IP">(() => isLocal ? "Локальный IP" : "Глобальный IP")
+
     const [ip, setIP] = useState<string>("\u2014");
-    const pref = "us"
     const [flag, setFlag] = useState<{uri: string}>();
 
     
@@ -51,7 +50,7 @@ export default function IPInfo({ info, isLocal }: IIPInfo) {
     return (
         <View style={ipInfoStyles.block}>
             <Text style={ipInfoStyles.title}>
-                {title}:
+                {isLocal ? "Локальный IP" : "Глобальный IP"}:
             </Text>
             <View
                 style={[
