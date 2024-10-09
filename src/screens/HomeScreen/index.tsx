@@ -11,6 +11,7 @@ import NetInfo, { NetInfoState } from "@react-native-community/netinfo";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { theme } from "../../constants/rootStyles";
 import NetworkData from "../../components/NetworkData";
+import NetFullDataCard from "../../components/NetFullDataCard";
 
 type Props = NativeStackScreenProps<HomeStack, "HomeScreen">
 
@@ -36,6 +37,13 @@ export default function HomeScreen({ navigation }: Props) {
       <StatusBar backgroundColor={theme.dark.background} barStyle={"light-content"} />
       <ConnectionStatus info={info} />
       <NetworkData info={info} />
+      <View style={{
+        paddingVertical: 16,
+        gap: 16,
+      }}>
+        <NetFullDataCard isLocal={true} navigation={navigation} ipData={info}/>
+        <NetFullDataCard isLocal={false} navigation={navigation} ipData={undefined}/>
+      </View>
     </ScrollView>
   )
 }
