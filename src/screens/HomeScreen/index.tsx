@@ -33,8 +33,7 @@ export default function HomeScreen({ navigation }: Props) {
         styles.container,
         { display: "flex", rowGap: 16 }]}>
       <StatusBar backgroundColor={theme.dark.background} barStyle={"light-content"} />
-      <ConnectionStatus info={info}/>
-    </View>
+      <ConnectionStatus info={info} />
     </ScrollView>
   )
 }
