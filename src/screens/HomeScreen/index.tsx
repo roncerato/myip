@@ -1,7 +1,7 @@
 import ConnectionStatus from "../../components/ConnectionStatus";
 import React, { useEffect, useState } from 'react';
 import {
-  Button,
+  ScrollView,
   StatusBar,
   StyleSheet,
   Text,
@@ -30,10 +30,15 @@ export default function HomeScreen({ navigation }: Props) {
   }, []);
 
   return (
-    <View style={[styles.container, { display: "flex", rowGap: 16 }]}>
+    <ScrollView
+      contentContainerStyle={{ paddingBottom: 36 }}
+      style={[
+        styles.container,
+        { display: "flex", rowGap: 16 }]}>
       <StatusBar backgroundColor={theme.dark.background} barStyle={"light-content"} />
       <ConnectionStatus info={info}/>
     </View>
+    </ScrollView>
   )
 }
 
