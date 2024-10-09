@@ -14,7 +14,7 @@ import { ConnectionType, IConnectionStatus } from "../../components/ConnectionSt
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { theme } from "../../constants/rootStyles";
 
-type Props = NativeStackScreenProps<HomeStack>
+type Props = NativeStackScreenProps<HomeStack, "HomeScreen">
 
 export default function HomeScreen({ navigation }: Props) {
   const [info, setInfo] = useState<NetInfoState>()
