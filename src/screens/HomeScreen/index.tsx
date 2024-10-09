@@ -4,13 +4,10 @@ import {
   ScrollView,
   StatusBar,
   StyleSheet,
-  Text,
-  Touchable,
-  TouchableOpacity,
   View
 } from 'react-native';
-import NetInfo, { NetInfoCellularGeneration, NetInfoState, NetInfoStateType, NetInfoWifiState } from "@react-native-community/netinfo";
-import { ConnectionType, IConnectionStatus } from "../../components/ConnectionStatus/ConnectionStatus.props";
+import NetInfo, { NetInfoState } from "@react-native-community/netinfo";
+
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { theme } from "../../constants/rootStyles";
 
