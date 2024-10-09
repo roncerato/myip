@@ -1,5 +1,4 @@
-import { Text, View } from "react-native";
-import InfoBlock from "../InfoBlock";
+import { View } from "react-native";
 import { NetworkDataStyles } from "./NetworkData.style";
 import Button from "../Button";
 import { INetworkData } from "./NetworkData.props";
