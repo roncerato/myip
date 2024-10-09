@@ -10,6 +10,7 @@ import NetInfo, { NetInfoState } from "@react-native-community/netinfo";
 
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { theme } from "../../constants/rootStyles";
+import NetworkData from "../../components/NetworkData";
 
 type Props = NativeStackScreenProps<HomeStack, "HomeScreen">
 
@@ -34,6 +35,7 @@ export default function HomeScreen({ navigation }: Props) {
         { display: "flex", rowGap: 16 }]}>
       <StatusBar backgroundColor={theme.dark.background} barStyle={"light-content"} />
       <ConnectionStatus info={info} />
+      <NetworkData info={info} />
     </ScrollView>
   )
 }
