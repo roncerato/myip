@@ -5,9 +5,6 @@ import { NetFullDataCardProps } from "./NetFullDataCard.props";
 import GlobalInf from "../../../assets/images/svg/globalInf.svg"
 import LocalInf from "../../../assets/images/svg/localInf.svg"
 import { theme } from "../../constants/rootStyles";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-
-
 
 export default function NetFullDataCard({ isLocal, navigation, ipData }: NetFullDataCardProps) {
     return (
