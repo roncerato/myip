@@ -5,6 +5,8 @@ import { IGlobalConnection, ILocalConnection } from "../../types/connectionTypes
 import { theme } from "../../constants/rootStyles";
 import BackIcon from "../../../assets/images/svg/back.svg"
 import RefreshIcon from "../../../assets/images/svg/refresh.svg"
+import LocalInfo from "../../components/LocalInfo";
+import GlobalInfo from "../../components/GlobalInfo";
 type Props = NativeStackScreenProps<HomeStack, "DetailsInfoScreen">
 type DetailsInfoScreenRouteProp = RouteProp<HomeStack, "DetailsInfoScreen">
 
@@ -29,6 +31,11 @@ export default function DetailsInfoScreen({ navigation }: Props) {
                     <RefreshIcon width={26} height={26} fill={theme.dark.lightgrey} />
                 </TouchableOpacity>
             </View>
+            {
+                isLocal ?
+                    <LocalInfo data={ipData} /> :
+                    <GlobalInfo data={undefined} />
+            }
         </View>
     )
 }
