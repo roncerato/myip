@@ -1,9 +1,10 @@
 export const theme = {
     dark: {
-        background: "#111111",
+        background: "rgb(1,1,1)",
         primaryColor: "#0F63FF",
-        secondary: "#282828",
+        secondary: "#171719",
         textColor: "#fff",
+        lightgrey: "#9d9d9d",
 
     },
     light: {
