@@ -1,15 +1,16 @@
+import { RouteProp, useRoute } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { Button, Text, View } from "react-native";
+import { View } from "react-native";
 
-type Props = NativeStackScreenProps<HomeStack>
+type Props = NativeStackScreenProps<HomeStack, "DetailsInfoScreen">
+type DetailsInfoScreenRouteProp = RouteProp<HomeStack, "DetailsInfoScreen">
 
-export default function DetailsInfoScreen({navigation}: Props){
+export default function DetailsInfoScreen({ navigation }: Props) {
+    const router = useRoute<DetailsInfoScreenRouteProp>();
+   
+
     return (
         <View>
-            <Text>
-                Информация
-            </Text>
-            <Button title="Back" onPress={()=>navigation.goBack()}/>
         </View>
     )
 }
