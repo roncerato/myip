@@ -1,4 +1,4 @@
 export interface IMainBlock {
     name: string,
-    value: string
+    value: string | undefined
 }

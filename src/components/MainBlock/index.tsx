@@ -4,13 +4,14 @@ import { IMainBlock } from "./MainBlock.props";
 
 
 export default function MainBlock({ name, value }: IMainBlock) {
+    const emDash = "\u2014"
     return (
         <View style={mainBlockStyles.mainData}>
             <Text style={mainBlockStyles.name}>
                 {name}
             </Text>
             <Text style={mainBlockStyles.value}>
-                {value}
+                {value || emDash}
             </Text>
         </View>
 
