@@ -1,5 +1,8 @@
 import { NetInfoState } from "@react-native-community/netinfo";
+import { IGlobalIP } from "../../types/globalIP";
 
 export interface INetworkData{
-    info: NetInfoState | undefined
+    local: NetInfoState | undefined
+    global: IGlobalIP | undefined
+    flag: {uri: string} | undefined
 }

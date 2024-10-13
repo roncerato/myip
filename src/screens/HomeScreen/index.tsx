@@ -12,21 +12,42 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { theme } from "../../constants/rootStyles";
 import NetworkData from "../../components/NetworkData";
 import NetFullDataCard from "../../components/NetFullDataCard";
+import { IGlobalIP } from "../../types/globalIP";
 
 type Props = NativeStackScreenProps<HomeStack, "HomeScreen">
 
 export default function HomeScreen({ navigation }: Props) {
-  const [info, setInfo] = useState<NetInfoState>()
-
+  const [local, setLocal] = useState<NetInfoState>()
+  const [global, setGlobal] = useState<IGlobalIP | undefined>(undefined)
+  const [flag, setFlag] = useState<{ uri: string } | undefined>()
+  //Локальный IP 
   useEffect(() => {
     const unsubscribe = NetInfo.addEventListener((state: NetInfoState) => {
-      setInfo(state)
+      setLocal(state)
     });
 
     return () => {
       unsubscribe();
     };
   }, []);
+
+  // Глобальный IP
+  useEffect(() => {
+    setFlag(undefined)
+    console.log(local)
+    fetch("http://ip-api.com/json/?fields=66846719&lang=ru")
+      .then(res => res.json() as Promise<IGlobalIP>)
+      .then(data => {
+        setGlobal(data)
+        if (data.countryCode == "TM") {
+          setFlag(require("../../../assets/images/tm.png"))
+        }
+        else {
+          setFlag({ uri: "https://flagcdn.com/h80/" + String(data.countryCode).toLowerCase() + ".png" })
+        }
+      })
+      .catch(() => setGlobal(undefined))
+  }, [local])
 
   return (
     <ScrollView
@@ -35,13 +56,14 @@ export default function HomeScreen({ navigation }: Props) {
         styles.container,
         { display: "flex", rowGap: 16 }]}>
       <StatusBar backgroundColor={theme.dark.background} barStyle={"light-content"} />
-      <ConnectionStatus info={info} />
-      <NetworkData info={info} />
+      <ConnectionStatus info={local} />
+      <NetworkData local={local} global={global} flag={flag} />
+      
       <View style={{
         paddingVertical: 16,
         gap: 16,
       }}>
-        <NetFullDataCard isLocal={true} navigation={navigation} ipData={info}/>
+        <NetFullDataCard isLocal={true} navigation={navigation} ipData={local}/>
         <NetFullDataCard isLocal={false} navigation={navigation} ipData={undefined}/>
       </View>
     </ScrollView>
