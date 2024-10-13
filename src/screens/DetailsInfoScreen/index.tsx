@@ -12,9 +12,8 @@ type DetailsInfoScreenRouteProp = RouteProp<HomeStack, "DetailsInfoScreen">
 
 export default function DetailsInfoScreen({ navigation }: Props) {
     const router = useRoute<DetailsInfoScreenRouteProp>();
-    const { isLocal, ipData } = router.params as ILocalConnection | IGlobalConnection
+    const { isLocal, ipData, flag } = router.params as ILocalConnection | IGlobalConnection
    
-
     return (
         <View>
             <View style={{
@@ -34,7 +33,7 @@ export default function DetailsInfoScreen({ navigation }: Props) {
             {
                 isLocal ?
                     <LocalInfo data={ipData} /> :
-                    <GlobalInfo data={undefined} />
+                    <GlobalInfo data={ipData} flag={flag}/>
             }
         </View>
     )
