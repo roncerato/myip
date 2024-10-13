@@ -22,7 +22,6 @@ export default function ConnectionStatus({ info }: IConnectionStatus) {
                 setConnectionDetail(`${Number(info.details.frequency! / 1000).toString().slice(0, 3)} GHz`)
             }
             else if (info.type === "cellular") {
-                console.log(info.details.cellularGeneration)
                 setConnectionName(info.details.carrier)
                 setConnectionDetail(info.details.cellularGeneration?.toUpperCase())
             }
