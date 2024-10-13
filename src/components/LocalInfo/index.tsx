@@ -19,7 +19,7 @@ export default function LocalInfo({ data }: ILocalInfo) {
         if (data && data.type === "wifi") {
 
             setIp(data.details.ipAddress!)
-            setSsid(data.details.ssid!)
+            setSsid(data.details.ssid || "Wi-Fi")
             setFrequency(`${Number(data.details.frequency! / 1000).toString().slice(0, 3)} GHz`)
             setSubnet(data.details.subnet!)
             setBssid(data.details.bssid!)
