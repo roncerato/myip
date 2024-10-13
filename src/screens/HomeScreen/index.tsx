@@ -34,7 +34,6 @@ export default function HomeScreen({ navigation }: Props) {
   // Глобальный IP
   useEffect(() => {
     setFlag(undefined)
-    console.log(local)
     fetch("http://ip-api.com/json/?fields=66846719&lang=ru")
       .then(res => res.json() as Promise<IGlobalIP>)
       .then(data => {
@@ -48,7 +47,6 @@ export default function HomeScreen({ navigation }: Props) {
       })
       .catch(() => setGlobal(undefined))
   }, [local])
-
   return (
     <ScrollView
       contentContainerStyle={{ paddingBottom: 36 }}
@@ -64,7 +62,7 @@ export default function HomeScreen({ navigation }: Props) {
         gap: 16,
       }}>
         <NetFullDataCard isLocal={true} navigation={navigation} ipData={local}/>
-        <NetFullDataCard isLocal={false} navigation={navigation} ipData={undefined}/>
+        <NetFullDataCard isLocal={false} navigation={navigation} ipData={global} flag={flag}/>
       </View>
     </ScrollView>
   )
