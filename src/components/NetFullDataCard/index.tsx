@@ -6,7 +6,7 @@ import GlobalInf from "../../../assets/images/svg/globalInf.svg"
 import LocalInf from "../../../assets/images/svg/localInf.svg"
 import { theme } from "../../constants/rootStyles";
 
-export default function NetFullDataCard({ isLocal, navigation, ipData, flag }: NetFullDataCardProps) {
+export default function NetFullDataCard({ isLocal, navigation, ipData, flag, isConnected }: NetFullDataCardProps) {
     return (
         <View style={netFullDataCardStyles.container}>
             <Text style={netFullDataCardStyles.title}>
@@ -27,7 +27,7 @@ export default function NetFullDataCard({ isLocal, navigation, ipData, flag }: N
                 </Text>
             </View>
             <View>
-                <Button text="Подробнее" fullWidth={false} onPress={()=>
+                <Button text="Подробнее" fullWidth={false} disabled={isConnected} isBGDark={isConnected} onPress={()=>
                     navigation.navigate("DetailsInfoScreen",{
                         isLocal: isLocal,
                         ipData: ipData,

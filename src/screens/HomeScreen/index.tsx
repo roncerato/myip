@@ -62,8 +62,8 @@ export default function HomeScreen({ navigation }: Props) {
         paddingVertical: 16,
         gap: 16,
       }}>
-        <NetFullDataCard isLocal={true} navigation={navigation} ipData={local}/>
-        <NetFullDataCard isLocal={false} navigation={navigation} ipData={global} flag={flag}/>
+        <NetFullDataCard isLocal={true} navigation={navigation} ipData={local} isConnected={!local?.isInternetReachable}/>
+        <NetFullDataCard isLocal={false} navigation={navigation} ipData={global} flag={flag} isConnected={!local?.isInternetReachable}/>
       </View>
     </ScrollView>
   )

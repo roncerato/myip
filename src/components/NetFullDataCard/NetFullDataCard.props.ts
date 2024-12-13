@@ -4,10 +4,12 @@ import { IGlobalConnection, ILocalConnection } from "../../types/connectionTypes
 type Navigation =  {navigation: NativeStackNavigationProp<HomeStack, "HomeScreen">;}
 
 type LocalScreen = ILocalConnection & Navigation & {
-    flag?: undefined
+    flag?: undefined,
+    isConnected: boolean
 }
 type GlobalScreen = IGlobalConnection & Navigation & {
-    flag: {uri: string} | undefined
+    flag: {uri: string} | undefined,
+    isConnected: boolean
 }
 
-export type NetFullDataCardProps = LocalScreen | GlobalScreen
+export type NetFullDataCardProps = LocalScreen | GlobalScreen 

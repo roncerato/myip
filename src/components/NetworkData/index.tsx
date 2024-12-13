@@ -12,7 +12,7 @@ export default function NetworkData({ local, global, flag }: INetworkData) {
                 <IPInfo isLocal={false} data={global} flag={flag}/>
                 <IPInfo isLocal={true} data={local}/>
             </View>
-            <Button text={"ОБНОВИТЬ"} onPress={() => {NetInfo.refresh() }} />
+            <Button text={"ОБНОВИТЬ"} onPress={() => {NetInfo.refresh() }} disabled={!local?.isInternetReachable} style={{backgroundColor: "red"}} isBGDark={!local?.isInternetReachable}/>
         </View>
     )
 }
