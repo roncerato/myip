@@ -17,7 +17,7 @@ import { IGlobalIP } from "../../types/globalIP";
 type Props = NativeStackScreenProps<HomeStack, "HomeScreen">
 
 export default function HomeScreen({ navigation }: Props) {
-  const [local, setLocal] = useState<NetInfoState>()
+  const [local, setLocal] = useState<NetInfoState | undefined>(undefined)
   const [global, setGlobal] = useState<IGlobalIP | undefined>(undefined)
   const [flag, setFlag] = useState<{ uri: string } | undefined>()
   //Локальный IP 
@@ -37,6 +37,7 @@ export default function HomeScreen({ navigation }: Props) {
     fetch("http://ip-api.com/json/?fields=66846719&lang=ru")
       .then(res => res.json() as Promise<IGlobalIP>)
       .then(data => {
+        setFlag(undefined)
         setGlobal(data)
         if (data.countryCode == "TM") {
           setFlag(require("../../../assets/images/tm.png"))
