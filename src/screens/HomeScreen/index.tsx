@@ -33,20 +33,26 @@ export default function HomeScreen({ navigation }: Props) {
 
   // Глобальный IP
   useEffect(() => {
-    setFlag(undefined)
-    fetch("http://ip-api.com/json/?fields=66846719&lang=ru")
-      .then(res => res.json() as Promise<IGlobalIP>)
-      .then(data => {
-        setFlag(undefined)
-        setGlobal(data)
-        if (data.countryCode == "TM") {
-          setFlag(require("../../../assets/images/tm.png"))
-        }
-        else {
-          setFlag({ uri: "https://flagcdn.com/h80/" + String(data.countryCode).toLowerCase() + ".png" })
-        }
-      })
-      .catch(() => setGlobal(undefined))
+    if(!!local?.isInternetReachable === true) {
+      setFlag(undefined)
+      fetch("http://ip-api.com/json/?fields=66846719&lang=ru")
+        .then(res => res.json() as Promise<IGlobalIP>)
+        .then(data => {
+          setFlag(undefined)
+          setGlobal(data)
+          if (data.countryCode == "TM") {
+            setFlag(require("../../../assets/images/tm.png"))
+          }
+          else {
+            setFlag({ uri: "https://flagcdn.com/h80/" + String(data.countryCode).toLowerCase() + ".png" })
+          }
+        })
+        .catch(() => setGlobal(undefined))
+    }
+    else{
+      setGlobal(undefined);
+      setFlag(undefined)
+    }
   }, [local])
   return (
     <ScrollView
@@ -57,7 +63,7 @@ export default function HomeScreen({ navigation }: Props) {
       <StatusBar backgroundColor={theme.dark.background} barStyle={"light-content"} />
       <ConnectionStatus info={local} />
       <NetworkData local={local} global={global} flag={flag} />
-      
+
       <View style={{
         paddingVertical: 16,
         gap: 16,
