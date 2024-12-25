@@ -6,9 +6,11 @@ import MainBlock from "../MainBlock";
 import { IGlobalInfo } from "./GlobalInfo.props";
 import { theme } from "../../constants/rootStyles";
 import { ipInfoStyles } from "../IPInfo/IPInfo.style";
+import { useTranslation } from "react-i18next";
 
 
 export default function GlobalInfo({ data, flag }: IGlobalInfo) {
+    const { t } = useTranslation();
     return (
         <ScrollView>
             <View style={globalInfoStyles.container}>
@@ -32,18 +34,18 @@ export default function GlobalInfo({ data, flag }: IGlobalInfo) {
                     </Text>
 
                 </View>
-                <MainBlock name={"IP"} value={data?.query} />
+                <MainBlock name={t("details_screen.global_info.ip")} value={data?.query} />
 
                 <View style={globalInfoStyles.mainBlock}>
-                    <MainBlock name={"Широта"} value={String(data?.lat)} />
-                    <MainBlock name={"Долгота"} value={String(data?.lon)} />
+                    <MainBlock name={t("details_screen.global_info.latitude")} value={String(data?.lat)} />
+                    <MainBlock name={t("details_screen.global_info.longitude")} value={String(data?.lon)} />
                 </View>
 
-                <ListItem name={"Провайдер"} value={data?.asname} />
-                <ListItem name={"Прокси"} value={data?.proxy ? "Используется" : "Не используется"} />
-                <ListItem name={"Город"} value={data?.city} />
-                <ListItem name={"Континент"} value={data?.continent} />
-                <ListItem name={"Код страны"} value={data?.countryCode} />
+                <ListItem name={t("details_screen.global_info.provider")} value={data?.asname} />
+                <ListItem name={t("details_screen.global_info.proxy")} value={data?.proxy ? t("details_screen.global_info.used") : t("details_screen.global_info.not_used")} />
+                <ListItem name={t("details_screen.global_info.city")} value={data?.city} />
+                <ListItem name={t("details_screen.global_info.continent")} value={data?.continent} />
+                <ListItem name={t("details_screen.global_info.country_code")} value={data?.countryCode} />
             </View>
         </ScrollView>
     )

@@ -5,12 +5,14 @@ import { NetFullDataCardProps } from "./NetFullDataCard.props";
 import GlobalInf from "../../../assets/images/svg/globalInf.svg"
 import LocalInf from "../../../assets/images/svg/localInf.svg"
 import { theme } from "../../constants/rootStyles";
+import { useTranslation } from "react-i18next";
 
 export default function NetFullDataCard({ isLocal, navigation, ipData, flag, isConnected }: NetFullDataCardProps) {
+    const {t} = useTranslation();
     return (
         <View style={netFullDataCardStyles.container}>
             <Text style={netFullDataCardStyles.title}>
-                {isLocal ? "Сетевые данные" : "IP-данные"}:
+                {isLocal ? t("homescreen.network_data") : t("homescreen.ip_data")}:
             </Text>
             <View style={netFullDataCardStyles.descriptionImg}>
                 <View style={netFullDataCardStyles.img}>
@@ -22,12 +24,12 @@ export default function NetFullDataCard({ isLocal, navigation, ipData, flag, isC
                 </View>
                 <Text style={netFullDataCardStyles.description}>
                     {isLocal
-                        ? "Данные о локальном IP-адресе, MAC-адресе, DNS, и т.д."
-                        : "Подробная информация на основе вашего IP-адреса"}
+                        ? t("homescreen.local_ip_info")
+                        : t("homescreen.detailed_info")}
                 </Text>
             </View>
             <View>
-                <Button text="Подробнее" fullWidth={false} disabled={isConnected} isBGDark={isConnected} onPress={()=>
+                <Button text={t("homescreen.more_details")} fullWidth={false} disabled={isConnected} isBGDark={isConnected} onPress={()=>
                     navigation.navigate("DetailsInfoScreen",{
                         isLocal: isLocal,
                         ipData: ipData,

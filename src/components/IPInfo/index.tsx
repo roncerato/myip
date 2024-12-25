@@ -7,9 +7,11 @@ import { IGlobalIP } from "../../types/globalIP";
 import { SvgProps, SvgUri } from "react-native-svg";
 import Router from "../../../assets/images/svg/router.svg"
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 export default function IPInfo({ isLocal, data, flag }: ILocalInterface | IGlobalInterface) {
 
+    const { t } = useTranslation();
     const emDash = "\u2014"
     const [ip, setIP] = useState<string>(emDash);
 
@@ -29,7 +31,7 @@ export default function IPInfo({ isLocal, data, flag }: ILocalInterface | IGloba
     return (
         <View style={ipInfoStyles.block}>
             <Text style={ipInfoStyles.title}>
-                {isLocal ? "Локальный IP" : "Глобальный IP"}:
+                {isLocal ? t("homescreen.local_ip") : t("homescreen.global_ip")}:
             </Text>
             <View
                 style={[

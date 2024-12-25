@@ -1,0 +1,41 @@
+{
+  "greeting": "Hello, World!",
+  "homescreen": {
+    "title": "Home Screen",
+    "local_ip": "Local IP",
+    "global_ip": "Global IP",
+    "refresh": "Refresh",
+    "more_details": "More Details",
+    "network_data": "Network Data",
+    "ip_data": "IP Data",
+    "local_ip_info": "Local IP Address, MAC Address, DNS, etc.",
+    "detailed_info": "Detailed information based on your IP address"
+  },
+  "details_screen": {
+    "title": "Details Screen",
+    "local_info": {
+      "title": "Local Info",
+      "ip": "IP",
+      "subnet_mask": "Subnet Mask",
+      "frequency": "Frequency",
+      "wifi_mac_address": "Wi-Fi MAC Address",
+      "signal_level": "Signal Level"
+    },
+    "global_info": {
+      "title": "Global Info",
+      "ip": "IP",
+      "longitude": "Longitude",
+      "provider": "Provider",
+      "proxy": "Proxy",
+      "used": "Used",
+      "not_used": "Not Used",
+      "city": "City",
+      "continent": "Continent",
+      "country_code": "Country Code",
+      "latitude": "Latitude",
+      "timezone": "Timezone",
+      "connection_type": "Connection Type",
+      "isp": "ISP"
+    }
+  }
+}

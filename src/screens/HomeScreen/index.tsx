@@ -4,6 +4,7 @@ import {
   ScrollView,
   StatusBar,
   StyleSheet,
+  Text,
   View
 } from 'react-native';
 import NetInfo, { NetInfoState } from "@react-native-community/netinfo";
@@ -13,13 +14,15 @@ import { theme } from "../../constants/rootStyles";
 import NetworkData from "../../components/NetworkData";
 import NetFullDataCard from "../../components/NetFullDataCard";
 import { IGlobalIP } from "../../types/globalIP";
-
+import { useTranslation } from "react-i18next";
 type Props = NativeStackScreenProps<HomeStack, "HomeScreen">
 
 export default function HomeScreen({ navigation }: Props) {
   const [local, setLocal] = useState<NetInfoState | undefined>(undefined)
   const [global, setGlobal] = useState<IGlobalIP | undefined>(undefined)
   const [flag, setFlag] = useState<{ uri: string } | undefined>()
+  const { i18n } = useTranslation();
+
   //Локальный IP 
   useEffect(() => {
     const unsubscribe = NetInfo.addEventListener((state: NetInfoState) => {
@@ -33,9 +36,9 @@ export default function HomeScreen({ navigation }: Props) {
 
   // Глобальный IP
   useEffect(() => {
-    if(!!local?.isInternetReachable === true) {
+    if (!!local?.isInternetReachable === true) {
       setFlag(undefined)
-      fetch("http://ip-api.com/json/?fields=66846719&lang=ru")
+      fetch(`http://ip-api.com/json/?fields=66846719&lang=${i18n.language}`)
         .then(res => res.json() as Promise<IGlobalIP>)
         .then(data => {
           setFlag(undefined)
@@ -49,7 +52,7 @@ export default function HomeScreen({ navigation }: Props) {
         })
         .catch(() => setGlobal(undefined))
     }
-    else{
+    else {
       setGlobal(undefined);
       setFlag(undefined)
     }
@@ -68,8 +71,8 @@ export default function HomeScreen({ navigation }: Props) {
         paddingVertical: 16,
         gap: 16,
       }}>
-        <NetFullDataCard isLocal={true} navigation={navigation} ipData={local} isConnected={!local?.isInternetReachable}/>
-        <NetFullDataCard isLocal={false} navigation={navigation} ipData={global} flag={flag} isConnected={!local?.isInternetReachable}/>
+        <NetFullDataCard isLocal={true} navigation={navigation} ipData={local} isConnected={!local?.isInternetReachable} />
+        <NetFullDataCard isLocal={false} navigation={navigation} ipData={global} flag={flag} isConnected={!local?.isInternetReachable} />
       </View>
     </ScrollView>
   )
