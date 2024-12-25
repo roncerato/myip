@@ -5,6 +5,7 @@ import { localInfoStyles } from "./LocalInfo.style";
 import ListItem from "../ListItem";
 import WifiIcon from "../../../assets/images/svg/connectionType/wifi.svg"
 import MainBlock from "../MainBlock";
+import { useTranslation } from "react-i18next";
 
 export default function LocalInfo({ data }: ILocalInfo) {
     const symbol = "\u2014";
@@ -14,6 +15,7 @@ export default function LocalInfo({ data }: ILocalInfo) {
     const [subnet, setSubnet] = useState<string>(symbol)
     const [bssid, setBssid] = useState<string>(symbol)
     const [strength, setStrength] = useState<string>(symbol)
+    const { t } = useTranslation();
 
     useEffect(() => {
         if (data && data.type === "wifi") {
@@ -51,13 +53,13 @@ export default function LocalInfo({ data }: ILocalInfo) {
                 </View>
                 <View style={localInfoStyles.mainBlock}>
 
-                    <MainBlock name={"IP"} value={ip} />
-                    <MainBlock name={"Маска подсети"} value={subnet} />
+                    <MainBlock name={t("details_screen.local_info.ip")} value={ip} />
+                    <MainBlock name={t("details_screen.local_info.subnet_mask")} value={subnet} />
 
                 </View>
-                <ListItem name={"Частота"} value={frequency} />
-                <ListItem name={"MAC-адрес WI-FI"} value={bssid} />
-                <ListItem name={"Уровень сигнала"} value={strength} />
+                <ListItem name={t("details_screen.local_info.frequency")} value={frequency} />
+                <ListItem name={t("details_screen.local_info.wifi_mac_address")} value={bssid} />
+                <ListItem name={t("details_screen.local_info.signal_level")} value={strength} />
             </View>
         </ScrollView>
     )
