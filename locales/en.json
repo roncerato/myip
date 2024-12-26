@@ -37,5 +37,12 @@
       "connection_type": "Connection Type",
       "isp": "ISP"
     }
+  },
+  "settingScreen": {
+    "title": "Settings",
+    "language": "Language",
+    "theme": "Theme",
+    "dark": "Dark",
+    "light": "Light"
   }
 }
