@@ -1,42 +1,48 @@
 {
   "greeting": "Hello, World!",
-
-    "homescreen": {
-      "title": "Главный экран",
-      "local_ip": "Локальный IP",
-      "global_ip": "Глобальный IP",
-      "refresh": "Обновить",
-      "more_details": "Подробнее",
-      "network_data": "Сетевые данные",
-      "ip_data": "IP-данные",
-      "local_ip_info": "Данные о локальном IP-адресе, MAC-адресе, DNS, и т.д.",
-      "detailed_info": "Подробная информация на основе вашего IP-адреса"
+  "homescreen": {
+    "title": "Главный экран",
+    "local_ip": "Локальный IP",
+    "global_ip": "Глобальный IP",
+    "refresh": "Обновить",
+    "more_details": "Подробнее",
+    "network_data": "Сетевые данные",
+    "ip_data": "IP-данные",
+    "local_ip_info": "Данные о локальном IP-адресе, MAC-адресе, DNS, и т.д.",
+    "detailed_info": "Подробная информация на основе вашего IP-адреса"
+  },
+  "details_screen": {
+    "title": "Экран деталей",
+    "local_info": {
+      "title": "Локальная информация",
+      "ip": "IP",
+      "subnet_mask": "Маска подсети",
+      "frequency": "Частота",
+      "wifi_mac_address": "MAC-адрес WI-FI",
+      "signal_level": "Уровень сигнала"
     },
-    "details_screen": {
-      "title": "Экран деталей",
-      "local_info": {
-        "title": "Локальная информация",
-        "ip": "IP",
-        "subnet_mask": "Маска подсети",
-        "frequency": "Частота",
-        "wifi_mac_address": "MAC-адрес WI-FI",
-        "signal_level": "Уровень сигнала"
-      },
-      "global_info": {
-        "title": "Глобальная информация",
-        "ip": "IP",
-        "longitude": "Долгота",
-        "provider": "Провайдер",
-        "proxy": "Прокси",
-        "used": "Используется",
-        "not_used": "Не используется",
-        "city": "Город",
-        "continent": "Континент",
-        "country_code": "Код страны",
-        "latitude": "Широта",
-        "timezone": "Часовой пояс",
-        "connection_type": "Тип подключения",
-        "isp": "Интернет-провайдер"
-      }
+    "global_info": {
+      "title": "Глобальная информация",
+      "ip": "IP",
+      "longitude": "Долгота",
+      "provider": "Провайдер",
+      "proxy": "Прокси",
+      "used": "Используется",
+      "not_used": "Не используется",
+      "city": "Город",
+      "continent": "Континент",
+      "country_code": "Код страны",
+      "latitude": "Широта",
+      "timezone": "Часовой пояс",
+      "connection_type": "Тип подключения",
+      "isp": "Интернет-провайдер"
     }
+  },
+  "settingScreen": {
+    "title": "Настройки",
+    "language": "Язык",
+    "theme": "Тема",
+    "dark": "Темная",
+    "light": "Светлая"
   }
+}
