@@ -4,6 +4,7 @@ import { theme } from "../../constants/rootStyles";
 import ChevronDown from "../../../assets/images/svg/down-chevron.svg";
 import { useTranslation } from "react-i18next";
 import { langDropdownStyles } from "./LangDropdown.style";
+import { useTheme } from "@react-navigation/native";
 const langs = [
     {
         label: "РУ",
@@ -21,7 +22,7 @@ export default function LangDropdown() {
     const { i18n } = useTranslation();
     const [lang, setLang] = useState(i18n.language === "en" ? "EN" : "РУ");
     const [isOpened, setIsOpened] = useState(false);
-
+    const { colors } = useTheme()
     const changeLanguage = (key: string, label: string) => {
         i18n.changeLanguage(key);
         setIsOpened(false);
@@ -31,7 +32,7 @@ export default function LangDropdown() {
     return (
         <View style={langDropdownStyles.container}>
             <View style={langDropdownStyles.dropdownSelected} onTouchEnd={() => setIsOpened(!isOpened)}>
-                <Text style={langDropdownStyles.dropdownSelectedText}>{lang}</Text>
+                <Text style={[langDropdownStyles.dropdownSelectedText, { color: colors.text }]}>{lang}</Text>
                 <ChevronDown width={10} height={10} fill={theme.dark.lightgrey} />
             </View>
             {
@@ -47,7 +48,7 @@ export default function LangDropdown() {
                                     source={item.icon}
                                     style={{ width: "100%", height: "100%", resizeMode: "cover" }} />
                             </View>
-                            <Text style={langDropdownStyles.dropdownItemText} onPress={() => changeLanguage(item.key, item.label)}>
+                            <Text style={[langDropdownStyles.dropdownItemText, { color: colors.secondText }]} onPress={() => changeLanguage(item.key, item.label)}>
                                 {item.label}
                             </Text>
                         </View>

@@ -6,6 +6,7 @@ import ListItem from "../ListItem";
 import WifiIcon from "../../../assets/images/svg/connectionType/wifi.svg"
 import MainBlock from "../MainBlock";
 import { useTranslation } from "react-i18next";
+import { useTheme } from "@react-navigation/native";
 
 export default function LocalInfo({ data }: ILocalInfo) {
     const symbol = "\u2014";
@@ -16,7 +17,7 @@ export default function LocalInfo({ data }: ILocalInfo) {
     const [bssid, setBssid] = useState<string>(symbol)
     const [strength, setStrength] = useState<string>(symbol)
     const { t } = useTranslation();
-
+    const { colors } = useTheme()
     useEffect(() => {
         if (data && data.type === "wifi") {
 
@@ -43,10 +44,10 @@ export default function LocalInfo({ data }: ILocalInfo) {
                 <View style={localInfoStyles.connectionType}>
                     <View style={localInfoStyles.connectionSVG}>
 
-                        <WifiIcon fill={"#fff"} />
+                        <WifiIcon fill={colors.text} />
                     </View>
 
-                    <Text style={localInfoStyles.connectionName}>
+                    <Text style={[localInfoStyles.connectionName, { color: colors.text }]}>
                         {ssid}
                     </Text>
 

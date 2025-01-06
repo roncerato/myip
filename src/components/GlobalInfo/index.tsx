@@ -7,10 +7,12 @@ import { IGlobalInfo } from "./GlobalInfo.props";
 import { theme } from "../../constants/rootStyles";
 import { ipInfoStyles } from "../IPInfo/IPInfo.style";
 import { useTranslation } from "react-i18next";
+import { useTheme } from "@react-navigation/native";
 
 
 export default function GlobalInfo({ data, flag }: IGlobalInfo) {
     const { t } = useTranslation();
+    const { colors } = useTheme()
     return (
         <ScrollView>
             <View style={globalInfoStyles.container}>
@@ -29,7 +31,7 @@ export default function GlobalInfo({ data, flag }: IGlobalInfo) {
                         }
                     </View>
 
-                    <Text style={globalInfoStyles.countryName}>
+                    <Text style={[globalInfoStyles.countryName, { color: colors.text }]}>
                         {data?.country}
                     </Text>
 

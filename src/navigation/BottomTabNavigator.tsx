@@ -6,16 +6,18 @@ import InfoIcon from "../../assets/images/svg/info.svg"
 import InfoOutlineIcon from "../../assets/images/svg/info-outline.svg"
 import SettingsIcon from "../../assets/images/svg/settings.svg"
 import SettingsOutlineIcon from "../../assets/images/svg/settings-outline.svg"
+import { useTheme } from "@react-navigation/native"
 const Tab = createBottomTabNavigator()
 
 export default function BottomTabNavigator() {
+    const { colors } = useTheme()
     return (
         <Tab.Navigator
-            
+
             screenOptions={({ route }) => ({
                 headerShown: false,
                 tabBarStyle: {
-                    backgroundColor: theme.dark.secondary,
+                    backgroundColor: colors.card,
                     borderTopWidth: 0,
                 },
                 tabBarIcon: ({ focused, color, size }) => {
@@ -33,7 +35,7 @@ export default function BottomTabNavigator() {
                     }
                     return IconComponent
                 },
-                tabBarActiveTintColor: theme.dark.primaryColor,
+                tabBarActiveTintColor: colors.primary,
                 tabBarShowLabel: false,
                 tabBarHideOnKeyboard: false,
             })}>

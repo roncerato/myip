@@ -1,4 +1,4 @@
-import { RouteProp, useRoute } from "@react-navigation/native";
+import { RouteProp, useRoute, useTheme } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { TouchableOpacity, View } from "react-native";
 import { IGlobalConnection, ILocalConnection } from "../../types/connectionTypes";
@@ -13,7 +13,7 @@ type DetailsInfoScreenRouteProp = RouteProp<HomeStack, "DetailsInfoScreen">
 export default function DetailsInfoScreen({ navigation }: Props) {
     const router = useRoute<DetailsInfoScreenRouteProp>();
     const { isLocal, ipData, flag } = router.params as ILocalConnection | IGlobalConnection
-   
+    const { colors } = useTheme()
     return (
         <View>
             <View style={{
@@ -24,16 +24,16 @@ export default function DetailsInfoScreen({ navigation }: Props) {
                 alignItems: "center",
             }}>
                 <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <BackIcon width={22} height={22} fill={theme.dark.lightgrey} />
+                    <BackIcon width={22} height={22} fill={colors.secondText} />
                 </TouchableOpacity>
                 <TouchableOpacity>
-                    <RefreshIcon width={26} height={26} fill={theme.dark.lightgrey} />
+                    <RefreshIcon width={26} height={26} fill={colors.secondText} />
                 </TouchableOpacity>
             </View>
             {
                 isLocal ?
                     <LocalInfo data={ipData} /> :
-                    <GlobalInfo data={ipData} flag={flag}/>
+                    <GlobalInfo data={ipData} flag={flag} />
             }
         </View>
     )
