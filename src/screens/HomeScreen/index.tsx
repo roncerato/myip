@@ -5,6 +5,7 @@ import {
   StatusBar,
   StyleSheet,
   Text,
+  useColorScheme,
   View
 } from 'react-native';
 import NetInfo, { NetInfoState } from "@react-native-community/netinfo";
@@ -15,6 +16,7 @@ import NetworkData from "../../components/NetworkData";
 import NetFullDataCard from "../../components/NetFullDataCard";
 import { IGlobalIP } from "../../types/globalIP";
 import { useTranslation } from "react-i18next";
+import { useTheme } from "@react-navigation/native";
 type Props = NativeStackScreenProps<HomeStack, "HomeScreen">
 
 export default function HomeScreen({ navigation }: Props) {
@@ -22,7 +24,8 @@ export default function HomeScreen({ navigation }: Props) {
   const [global, setGlobal] = useState<IGlobalIP | undefined>(undefined)
   const [flag, setFlag] = useState<{ uri: string } | undefined>()
   const { i18n } = useTranslation();
-
+  const { colors } = useTheme()
+  const systemTheme = useColorScheme()
   //Локальный IP 
   useEffect(() => {
     const unsubscribe = NetInfo.addEventListener((state: NetInfoState) => {
@@ -63,7 +66,7 @@ export default function HomeScreen({ navigation }: Props) {
       style={[
         styles.container,
         { display: "flex", rowGap: 16 }]}>
-      <StatusBar backgroundColor={theme.dark.background} barStyle={"light-content"} />
+      <StatusBar backgroundColor={colors.background} barStyle={systemTheme === "dark" ? "light-content" : "dark-content"} />
       <ConnectionStatus info={local} />
       <NetworkData local={local} global={global} flag={flag} />
 

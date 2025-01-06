@@ -4,6 +4,7 @@ import { connectionStatusStyles as styles } from "./ConnectionStatus.styles";
 import { IConnectionType, connectionTypes } from "../../constants/connectionTypes";
 import { IConnectionStatus } from "./ConnectionStatus.props";
 import ConnectionStatusIndicator from "../ConnectionStatusIndicator";
+import { useTheme } from "@react-navigation/native";
 
 export default function ConnectionStatus({ info }: IConnectionStatus) {
 
@@ -11,7 +12,7 @@ export default function ConnectionStatus({ info }: IConnectionStatus) {
     const [connectionName, setConnectionName] = useState<string | undefined | null>(undefined)
     const [connectionDetail, setConnectionDetail] = useState<string | undefined>()
     const [connectionIndicator, setConnectionIndicator] = useState<boolean | null>(false)
-
+    const { colors } = useTheme()
     useEffect(() => {
         if (info !== undefined) {
             const foundConnectionType = connectionTypes.find((connectionType) => connectionType.key === info?.type) as IConnectionType;
@@ -37,14 +38,14 @@ export default function ConnectionStatus({ info }: IConnectionStatus) {
             <View style={styles.connectionType}>
                 <View style={styles.connectionSVG}>
 
-                    {<connectionType.Icon fill="#fff" />}
+                    {<connectionType.Icon fill={colors.secondText} />}
                 </View>
 
-                <Text style={styles.connectionName}>
+                <Text style={[styles.connectionName, { color: colors.text }]}>
                     {connectionName || connectionType.type}
                 </Text>
 
-                <Text style={styles.connectionDetails}>
+                <Text style={[styles.connectionDetails, { color: colors.text }]}>
                     {connectionDetail}
                 </Text>
             </View>

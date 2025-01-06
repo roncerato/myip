@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 
 export const connectionStatusStyles = StyleSheet.create({
-    container:{
+    container: {
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between"
