@@ -2,18 +2,42 @@ import { ScrollView, StyleSheet, Text, View } from "react-native";
 import LangDropdown from "../../components/LangDropdown";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@react-navigation/native";
+import ThemeSwitcher from "../../components/ThemeSwitcher";
 
 export default function SettingsScreen() {
     const { t } = useTranslation();
     const { colors } = useTheme()
     return (
         <View style={styles.container}>
-            <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+            <View style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+                backgroundColor: colors.card,
+                paddingVertical: 16,
+                paddingHorizontal: 20,
+                borderRadius: 8
+            }}>
                 <Text style={[styles.text, { color: colors.text }]}>
                     {t("settingScreen.language")}
                 </Text>
                 <LangDropdown />
             </View>
+            <View style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                gap: 0,
+                backgroundColor: colors.card,
+                paddingVertical: 16,
+                paddingHorizontal: 20,
+                borderRadius: 8
+            }}>
+                <Text style={[styles.text, { color: colors.text }]}>
+                    {t("settingScreen.dark")} {t("settingScreen.theme").toLowerCase()}
+                </Text>
+                <ThemeSwitcher />
+            </View>
+
         </View>
     )
 }
@@ -23,11 +47,12 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingTop: 36,
         paddingHorizontal: 18,
+        gap: 16
     },
     text: {
         fontSize: 16,
         fontFamily: "Jost-Bold",
-        marginBottom: 8,
+        // marginBottom: 8,
         color: "#fff"
     }
 })
