@@ -1,35 +1,23 @@
 import { Animated, StyleSheet, TouchableOpacity, View, TouchableWithoutFeedback, Switch } from "react-native";
-import { IThemeSwitcher } from "./ThemeSwitcher.props";
-import { themeSwitcherStyles } from "./ThemeSwitcher.styles";
+import { ISystemThemeSwitcher } from "./SystemThemeSwitcher.props";
+import { systemThemeSwitcherStyles } from "./SystemThemeSwitcher.styles";
 import { useTheme } from "@react-navigation/native";
-import { useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { useThemeContext } from "../../contexts/ThemeContext";
 
-export default function ThemeSwitcher({ }: IThemeSwitcher) {
-    const { isDarkTheme, setIsDarkTheme, isAutoTheme, systemTheme } = useThemeContext()
+export default function SystemThemeSwitcher({ }: ISystemThemeSwitcher) {
+    const { isDarkTheme, setIsDarkTheme, isAutoTheme, setIsAutoTheme, systemTheme } = useThemeContext()
     const [animatedValue] = useState(new Animated.Value(0));
     const { colors } = useTheme();
 
     const toggleSwitch = () => {
-        setIsDarkTheme(!isDarkTheme);
+        setIsAutoTheme(!isAutoTheme);
         Animated.timing(animatedValue, {
-            toValue: isDarkTheme ? 0 : 1,
+            toValue: isAutoTheme ? 0 : 1,
             duration: 160,
             useNativeDriver: false,
         }).start();
-    };
-
-    useEffect(() => {
-        if (isAutoTheme) {
-            const newIsDarkTheme = systemTheme === 'dark';
-            setIsDarkTheme(newIsDarkTheme);
-            Animated.timing(animatedValue, {
-                toValue: newIsDarkTheme ? 1 : 0,
-                duration: 160,
-                useNativeDriver: false,
-            }).start();
-        }
-    }, [isAutoTheme, systemTheme])
+    }
 
     const translateX = animatedValue.interpolate({
         inputRange: [0, 1],
@@ -37,8 +25,8 @@ export default function ThemeSwitcher({ }: IThemeSwitcher) {
     });
     return (
         <View>
-            <TouchableWithoutFeedback onPress={toggleSwitch} disabled={isAutoTheme}>
-                <View style={[styles.switch, { backgroundColor: isDarkTheme ? colors.primary : colors.secondText }]}>
+            <TouchableWithoutFeedback onPress={toggleSwitch} >
+                <View style={[styles.switch, { backgroundColor: isAutoTheme ? colors.primary : colors.secondText }]}>
                     <Animated.View
                         style={[
                             styles.circle,

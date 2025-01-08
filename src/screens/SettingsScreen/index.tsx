@@ -3,6 +3,7 @@ import LangDropdown from "../../components/LangDropdown";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@react-navigation/native";
 import ThemeSwitcher from "../../components/ThemeSwitcher";
+import AutoThemeSwitcher from "../../components/SystemThemeSwitcher";
 
 export default function SettingsScreen() {
     const { t } = useTranslation();
@@ -23,19 +24,37 @@ export default function SettingsScreen() {
                 </Text>
                 <LangDropdown />
             </View>
-            <View style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                gap: 0,
-                backgroundColor: colors.card,
-                paddingVertical: 16,
-                paddingHorizontal: 20,
-                borderRadius: 8
-            }}>
-                <Text style={[styles.text, { color: colors.text }]}>
-                    {t("settingScreen.dark")} {t("settingScreen.theme").toLowerCase()}
-                </Text>
-                <ThemeSwitcher />
+            <View
+                style={{
+                    backgroundColor: colors.card,
+                    borderRadius: 8
+                }}>
+                <View style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    gap: 0,
+                    paddingVertical: 16,
+                    paddingHorizontal: 20,
+                }}>
+                    <Text style={[styles.text, { color: colors.text }]}>
+                        {t("settingScreen.systemTheme")}
+                    </Text>
+                    <AutoThemeSwitcher />
+                </View>
+                <View style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    gap: 0,
+                    backgroundColor: colors.card,
+                    paddingVertical: 16,
+                    paddingHorizontal: 20,
+                    borderRadius: 8
+                }}>
+                    <Text style={[styles.text, { color: colors.text }]}>
+                        {t("settingScreen.dark")} {t("settingScreen.theme").toLowerCase()}
+                    </Text>
+                    <ThemeSwitcher />
+                </View>
             </View>
 
         </View>
