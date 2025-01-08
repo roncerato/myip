@@ -5,6 +5,7 @@ import RootNavigation from './src/navigation';
 import SplashScreen from 'react-native-splash-screen';
 import "./services/i18next.ts";
 import { customDarkTheme, customDefaultTheme } from './src/constants/themes.ts';
+import { ThemeProvider, useThemeContext } from './src/contexts/ThemeContext.tsx';
 
 async function requestLocationPermission() {
   try {
@@ -33,9 +34,8 @@ async function requestLocationPermission() {
 
 requestLocationPermission();
 
-function App(): React.JSX.Element {
-  const [isDarkTheme, setIsDarkTheme] = useState<boolean>(true);
-  const systemTheme = useColorScheme()
+function AppContent(): React.JSX.Element {
+  const { isDarkTheme, setIsDarkTheme, isAutoTheme, setIsAutoTheme, systemTheme } = useThemeContext()
   const theme: Theme = isDarkTheme ? customDarkTheme : customDefaultTheme
 
   useEffect(() => {
@@ -46,6 +46,14 @@ function App(): React.JSX.Element {
       <RootNavigation />
     </NavigationContainer>
   );
+}
+
+function App(): React.JSX.Element {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
+  )
 }
 
 export default App;

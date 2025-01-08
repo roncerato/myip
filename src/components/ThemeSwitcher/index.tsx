@@ -3,16 +3,17 @@ import { IThemeSwitcher } from "./ThemeSwitcher.props";
 import { themeSwitcherStyles } from "./ThemeSwitcher.styles";
 import { useTheme } from "@react-navigation/native";
 import { useState } from "react";
+import { useThemeContext } from "../../contexts/ThemeContext";
 
 export default function ThemeSwitcher({ }: IThemeSwitcher) {
-    const [isOn, setIsOn] = useState(false);
+    const { isDarkTheme, setIsDarkTheme, isAutoTheme, setIsAutoTheme, systemTheme } = useThemeContext()
     const [animatedValue] = useState(new Animated.Value(0));
     const { colors } = useTheme();
 
     const toggleSwitch = () => {
-        setIsOn(!isOn);
+        setIsDarkTheme(!isDarkTheme);
         Animated.timing(animatedValue, {
-            toValue: isOn ? 0 : 1,
+            toValue: isDarkTheme ? 0 : 1,
             duration: 160,
             useNativeDriver: false,
         }).start();
@@ -25,7 +26,7 @@ export default function ThemeSwitcher({ }: IThemeSwitcher) {
     return (
         <View>
             <TouchableWithoutFeedback onPress={toggleSwitch} >
-                <View style={[styles.switch, { backgroundColor: isOn ? colors.primary : colors.secondText }]}>
+                <View style={[styles.switch, { backgroundColor: isDarkTheme ? colors.primary : colors.secondText }]}>
                     <Animated.View
                         style={[
                             styles.circle,
