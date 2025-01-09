@@ -7,7 +7,7 @@ import { useThemeContext } from "../../contexts/ThemeContext";
 
 export default function ThemeSwitcher({ }: IThemeSwitcher) {
     const { isDarkTheme, setIsDarkTheme, isAutoTheme, systemTheme } = useThemeContext()
-    const [animatedValue] = useState(new Animated.Value(0));
+    const [animatedValue] = useState(new Animated.Value(Number(isDarkTheme)));
     const { colors } = useTheme();
 
     const toggleSwitch = () => {
