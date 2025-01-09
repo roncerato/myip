@@ -26,13 +26,12 @@ export default function SystemThemeSwitcher({ }: ISystemThemeSwitcher) {
     return (
         <View>
             <TouchableWithoutFeedback onPress={toggleSwitch} >
-                <View style={[styles.switch, { backgroundColor: isAutoTheme ? colors.primary : colors.secondText }]}>
+                <View style={[systemThemeSwitcherStyles.switch, { backgroundColor: isAutoTheme ? colors.primary : colors.secondText }]}>
                     <Animated.View
                         style={[
-                            styles.circle,
+                            systemThemeSwitcherStyles.circle,
                             {
                                 transform: [{ translateX }],
-                                backgroundColor: "#fff"
                             },
                         ]}
                     />
@@ -41,19 +40,3 @@ export default function SystemThemeSwitcher({ }: ISystemThemeSwitcher) {
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    switch: {
-        width: 42,
-        height: 20,
-        borderRadius: 15,
-        backgroundColor: 'grey',
-        justifyContent: 'center',
-        padding: 4,
-    },
-    circle: {
-        width: 14,
-        height: 14,
-        borderRadius: 10,
-    },
-});
