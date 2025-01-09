@@ -2,12 +2,12 @@ import { Animated, StyleSheet, TouchableOpacity, View, TouchableWithoutFeedback,
 import { ISystemThemeSwitcher } from "./SystemThemeSwitcher.props";
 import { systemThemeSwitcherStyles } from "./SystemThemeSwitcher.styles";
 import { useTheme } from "@react-navigation/native";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { useThemeContext } from "../../contexts/ThemeContext";
 
 export default function SystemThemeSwitcher({ }: ISystemThemeSwitcher) {
     const { isDarkTheme, setIsDarkTheme, isAutoTheme, setIsAutoTheme, systemTheme } = useThemeContext()
-    const [animatedValue] = useState(new Animated.Value(0));
+    const [animatedValue] = useState(new Animated.Value(Number(isAutoTheme)));
     const { colors } = useTheme();
 
     const toggleSwitch = () => {
