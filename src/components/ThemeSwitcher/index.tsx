@@ -38,13 +38,16 @@ export default function ThemeSwitcher({ }: IThemeSwitcher) {
     return (
         <View>
             <TouchableWithoutFeedback onPress={toggleSwitch} disabled={isAutoTheme}>
-                <View style={[styles.switch, { backgroundColor: isDarkTheme ? colors.primary : colors.secondText }]}>
+                <View style={[themeSwitcherStyles.switch, {
+                    backgroundColor: isDarkTheme ?
+                        colors.primary :
+                        colors.secondText
+                }]}>
                     <Animated.View
                         style={[
-                            styles.circle,
+                            themeSwitcherStyles.circle,
                             {
                                 transform: [{ translateX }],
-                                backgroundColor: "#fff"
                             },
                         ]}
                     />
@@ -53,19 +56,3 @@ export default function ThemeSwitcher({ }: IThemeSwitcher) {
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    switch: {
-        width: 42,
-        height: 20,
-        borderRadius: 15,
-        backgroundColor: 'grey',
-        justifyContent: 'center',
-        padding: 4,
-    },
-    circle: {
-        width: 14,
-        height: 14,
-        borderRadius: 10,
-    },
-});
