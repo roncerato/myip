@@ -17,7 +17,10 @@ export default function SettingsScreen() {
                 backgroundColor: colors.card,
                 paddingVertical: 16,
                 paddingHorizontal: 20,
-                borderRadius: 8
+                borderRadius: 8,
+                position: "relative",
+                top: 0,
+                zIndex: 99999
             }}>
                 <Text style={[styles.text, { color: colors.text }]}>
                     {t("settingScreen.language")}
@@ -71,7 +74,6 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 16,
         fontFamily: "Jost-Bold",
-        // marginBottom: 8,
         color: "#fff"
     }
 })
