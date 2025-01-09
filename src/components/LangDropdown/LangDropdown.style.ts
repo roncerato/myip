@@ -1,7 +1,6 @@
 import { StyleSheet } from "react-native";
 import { theme } from "../../constants/rootStyles";
 
-
 export const langDropdownStyles = StyleSheet.create({
     container: {
         alignSelf: "flex-start",
@@ -13,7 +12,6 @@ export const langDropdownStyles = StyleSheet.create({
         fontFamily: "Jost-Bold"
     },
     dropdownSelected: {
-        borderColor: theme.dark.lightgrey,
         borderWidth: 1,
         borderRadius: 6,
         padding: 10,
@@ -21,15 +19,24 @@ export const langDropdownStyles = StyleSheet.create({
         flexDirection: "row",
         gap: 10,
         alignItems: "center",
-        marginBottom: 4,
         justifyContent: "space-between"
     },
     dropdownContainer: {
-        borderColor: theme.dark.lightgrey,
+        marginTop: 6,
+        position: "absolute",
         borderWidth: 1,
         borderRadius: 6,
         padding: 10,
         gap: 10,
+        alignSelf: "flex-end",
+        zIndex: 999,
+        top: "100%",
+        backgroundColor: "rgb(98, 78, 32)",
+    },
+    dropdownItem: {
+        display: "flex",
+        flexDirection: "row",
+        gap: 8
     },
     dropdownItemText: {
         color: theme.dark.lightgrey,
@@ -42,5 +49,4 @@ export const langDropdownStyles = StyleSheet.create({
         height: 20,
         borderRadius: 10,
     }
-
 });
