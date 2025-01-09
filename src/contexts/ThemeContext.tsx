@@ -1,4 +1,4 @@
-import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useState } from "react";
+import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffect, useState } from "react";
 import { ColorSchemeName, useColorScheme } from "react-native";
 
 interface IThemeContextProps {
@@ -15,6 +15,14 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     const [isDarkTheme, setIsDarkTheme] = useState<boolean>(false);
     const [isAutoTheme, setIsAutoTheme] = useState<boolean>(true)
     const systemTheme = useColorScheme()
+
+    useEffect(() => {
+        if (isAutoTheme) {
+            const newIsDarkTheme = systemTheme === 'dark';
+            setIsDarkTheme(newIsDarkTheme);
+        }
+    }, [isAutoTheme, systemTheme])
+
     return (
         <ThemeContext.Provider value={{ isDarkTheme, setIsDarkTheme, isAutoTheme, setIsAutoTheme, systemTheme }}>
             {children}
